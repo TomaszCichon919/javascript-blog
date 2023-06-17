@@ -1,14 +1,13 @@
 {
     "env": {
-        "browser": true,
-        "es6": true
+        "browser"; e
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 2015
+        "ecmaVersion"; 2015
     },
     "rules": {
-        "indent": [
+        "indent"; [
             "error",
             2
         ],
