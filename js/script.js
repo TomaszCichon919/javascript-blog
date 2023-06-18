@@ -49,7 +49,8 @@
   const optArticleSelector = ".post",
     optTitleSelector = ".post-title",
     optTitleListSelector = ".titles",
-    optArticleTagsSelector = ".post-tags .list";
+    optArticleTagsSelector = ".post-tags .list",
+    optAuthorSelector = ".post-author";
 
   function generateTitleLinks(customSelector = "") {
     /* [DONE] remove contents of titleList */
@@ -169,7 +170,7 @@
 
     const href = clickedElement.getAttribute("href");
 
-    console.log(href);
+    //console.log(href);
 
     /* make a new constant "tag" and extract tag from the "href" constant */
 
@@ -228,5 +229,90 @@
   }
 
     addClickListenersToTags();
+
+  function generateAuthors () {
+
+     /* [DONE] find all articles */
+
+     const articles = document.querySelectorAll(optArticleSelector);
+
+     /* [DONE] START LOOP: for every article: */
+
+    for (let article of articles) {
+
+      /* [DONE] find author wrapper */
+
+      const authorWrapper = article.querySelector(optAuthorSelector);
+      console.log (authorWrapper);
+
+      /* [DONE] make html variable with empty string */
+
+      let html = "";
+
+      /* [DONE] get authors from data-author attribute */
+
+      const articleAuthor = article.getAttribute("data-author");
+
+      /* [DONE] generate HTML of the link */
+
+      const linkHTML = '<a href="#" class="author">by '+ articleAuthor + '</a>';
+
+      /* [DONE] add generated code to html variable */
+
+      html = html + linkHTML;
+
+      /* [DONE] insert HTML of all the links into the tags wrapper */
+
+      authorWrapper.innerHTML = html;
+
+      /* [DONE] END LOOP: for every article: */
+    }
+  }
+
+  generateAuthors ();
+
+  function authorClickHandler (event) {
+
+     /* prevent default action for this event */
+
+     event.preventDefault();
+
+     /* make new constant named "clickedElement" and give it the value of "this" */
+ 
+     const clickedElement = this;
+     console.log("Author was clicked!");
+ 
+     /* make a new constant "href" and read the attribute "href" of the clicked element */
+ 
+     //const href = clickedElement.getAttribute("href");
+ 
+     //console.log(href);
+ 
+
+
+
+     /* execute function "generateTitleLinks" with article selector as argument */
+
+    //generateTitleLinks('[data-tags~="' + tag + '"]');
+  }
+  
+
+  function addClickListenersToAuthors () {
+
+     /* [DONE] find link to author */
+
+     const alink = document.querySelector('.author');
+
+     //console.log(alink);
+ 
+       /* [DONE] add authorClickHandler as event listener for that link */
+ 
+       alink.addEventListener("click", authorClickHandler);
+       
+ 
+  }
+
+  addClickListenersToAuthors ();
+
   
 }
