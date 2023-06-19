@@ -111,6 +111,9 @@ body {
 .post-author {
   font-style: italic;
 }
+.post-author li {
+  list-style: none;
+}
 
 .post-tags {
   display: flex;
