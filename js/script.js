@@ -1,6 +1,10 @@
 {
   ("use strict");
 
+  const templates = {
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+    tagCloudLink:
+  }
     const opts = {
     articleSelector: '.post',
     titleSelector: '.post-title',
@@ -86,12 +90,9 @@
 
       /* [DONE] create HTML of the link */
 
-      const linkHTML =
-        '<li><a href="#' +
-        articleId +
-        '"><span>' +
-        articleTitle +
-        "</span></a></li>";
+      //const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + "</span></a></li>";
+      const linkHTMLData = {id: articleId, title: articleTitle};
+      const linkHTML = templates.articleLink(linkHTMLData);
       //console.log (linkHTML);
 
       /* [DONE] insert link into titleList */
@@ -172,7 +173,9 @@
       for (let tag of articleTagsArray) {
         /* generate HTML of the link */
 
-        const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + "</a></li>";
+        //const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + "</a></li>";
+        const linkHTMLData = {id: 'tag-' + tag, title: tag};
+        const linkHTML = templates.articleLink(linkHTMLData);
 
         /* add generated code to html variable */
 
@@ -329,12 +332,9 @@
 
       /* [DONE] generate HTML of the link */
 
-      const linkHTML =
-        '<a href="#' +
-        articleAuthor +
-        '" class="author">by ' +
-        articleAuthor +
-        "</a>";
+      //const linkHTML ='<a href="#' + articleAuthor +'" class="author">by ' + articleAuthor + "</a>";
+      const linkHTMLData = {id: articleAuthor + 'class="author"', title: 'by' + articleAuthor};
+      const linkHTML = templates.articleLink(linkHTMLData);
 
       /* [DONE] add generated code to html variable */
 
